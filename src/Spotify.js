@@ -17,3 +17,18 @@ export const _getToken = async () => {
     const data = await result.json();
     return data.access_token;
 }
+
+export const searchAlbum = async (token, searchString) => {
+    const searchUrl = "https://api.spotify.com/v1/search?";
+    var params = {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token,
+        },
+    };
+    var query = searchUrl + "q=" + searchString + "&type=album";
+    console.log(query);
+    var result = await fetch(query, params);
+    var data = await result.json();
+    return data;
+}

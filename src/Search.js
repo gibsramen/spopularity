@@ -17,7 +17,7 @@ export default class Search extends React.Component {
     handleSubmit(event) {
         console.log("You entered: " + this.state.value + "!");
         _getToken().then( token => {
-            searchAlbum(token, "Idealism").then( data => {
+            searchAlbum(token, this.state.value).then( data => {
                 console.log(data);
             })
         })
