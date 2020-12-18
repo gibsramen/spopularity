@@ -12,7 +12,6 @@ export const _getToken = async () => {
         body: "grant_type=client_credentials"
     };
 
-    console.log("here");
     const result = await fetch(tokenUrl, params);
     const data = await result.json();
     return data.access_token;
@@ -20,15 +19,14 @@ export const _getToken = async () => {
 
 export const searchAlbum = async (token, searchString) => {
     const searchUrl = "https://api.spotify.com/v1/search?";
-    var params = {
+    const params = {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token,
         },
     };
-    var query = searchUrl + "q=" + searchString + "&type=album";
-    console.log(query);
-    var result = await fetch(query, params);
-    var data = await result.json();
+    const query = searchUrl + "q=" + searchString + "&type=album";
+    const result = await fetch(query, params);
+    const data = await result.json();
     return data;
 }
