@@ -1,5 +1,4 @@
 import React from 'react';
-import AlbumArt from './AlbumArt';
 
 export default class Search extends React.Component {
     render() {

@@ -31,10 +31,11 @@ export default class App extends React.Component{
     }
 
     handleSubmit(event) {
-        console.log("You entered: " + this.state.value + "!");
         _getToken().then( token => {
             searchAlbum(token, this.state.value).then( data => {
-                console.log(data.albums.items[0].artists[0].name);
+                this.setState({
+                    image: data.albums.items[0].images[0].url
+                })
             })
         })
         event.preventDefault();
