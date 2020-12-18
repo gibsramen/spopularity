@@ -1,4 +1,5 @@
 import React from 'react';
+import {_getToken, searchAlbum} from './Spotify.js';
 
 export default class Search extends React.Component {
     constructor(props) {
@@ -15,6 +16,11 @@ export default class Search extends React.Component {
 
     handleSubmit(event) {
         console.log("You entered: " + this.state.value + "!");
+        _getToken().then( token => {
+            searchAlbum(token, "Idealism").then( data => {
+                console.log(data);
+            })
+        })
         event.preventDefault();
     }
 
