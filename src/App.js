@@ -51,14 +51,10 @@ export default class App extends React.Component{
                         handleChange={this.handleChange}
                     />
                 </div>
-                <div className="album-frame">
-                    <div className="album-art">
-                        <AlbumArt image={this.state.image} />
-                    </div>
-                    <div className="track-list-frame">
-                        <TrackList trackNames={this.state.trackNames} />
-                    </div>
+                <div className="album-art">
+                    <AlbumArt image={this.state.image} />
                 </div>
+                <TrackList trackNames={this.state.trackNames} />
             </div>
         )
     }

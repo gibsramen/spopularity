@@ -4,10 +4,10 @@ import './TrackList.css';
 const TrackList = (props) => {
     const trackNames = props.trackNames;
     const listTracks = trackNames.map( (name) =>
-        <li className="track-name" key={name.toString()}>{name}</li>
+        <p className="track-name" key={name.toString()}>{name}</p>
     );
     return (
-        <ol className="track-list">{listTracks}</ol>
+        <div className="track-list">{listTracks}</div>
     )
 }
 
