@@ -1,18 +1,18 @@
 .track-list2 {
     list-style-position: outside;
     text-align: right;
-    float: right;
-    margin: auto;
+    /*margin: auto;*/
+    width: 30em;
     padding: 0;
-    width: 20em;
-    border: 1px solid black;
 }
 
 .track-popularities {
-    margin: auto;
-    padding: 0;
-    margin-right: 20em;
     list-style-type: none;
     text-align: left;
-    border: 1px solid black;
+    margin-left: 1%;
+    /*margin: auto;*/
+    padding: 0;
+}
+
+.track-name {
 }

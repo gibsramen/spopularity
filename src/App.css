@@ -24,8 +24,14 @@
 
 .album-art {
     margin: auto;
-    width: 40%;
+    padding: 1%;
+    width: 20em;
     float: center;
+}
+
+img {
+  padding: 0;
+  display: block;
 }
 
 .search-bar label > input {
@@ -41,10 +47,9 @@
 }
 
 .track-list-frame {
-    margin: auto;
-    padding-left: 10em;
-    padding-right: 10em;
-    text-align: right;
     display: flex;
-    border: 1px solid black;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: right;
 }

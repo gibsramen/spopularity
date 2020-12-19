@@ -5,7 +5,7 @@ export const TrackList = (props) => {
     const trackNames = props.trackNames;
 
     const listTracks2 = trackNames.map( (name) =>
-        <li>{name}</li>
+        <li className="track-name">{name}</li>
     );
     return (
         <ol
