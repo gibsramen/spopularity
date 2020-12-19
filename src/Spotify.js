@@ -30,3 +30,15 @@ export const searchAlbum = async (token, searchString) => {
     const data = await result.json();
     return data;
 }
+
+export const getTracks = async (token, albumID) => {
+    const searchUrl = "https://api.spotify.com/v1/albums/";
+    const params = {
+        method: "GET",
+        headers: {"Authorization": "Bearer " + token}
+    };
+    const query = searchUrl + albumID + "/tracks";
+    const result = await fetch(query, params);
+    const data = await result.json();
+    return data;
+}
