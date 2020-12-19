@@ -42,5 +42,9 @@
 
 .track-list-frame {
     margin: auto;
-    text-align: center;
-};
+    padding-left: 10em;
+    padding-right: 10em;
+    text-align: right;
+    display: flex;
+    border: 1px solid black;
+}

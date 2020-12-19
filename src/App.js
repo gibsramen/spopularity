@@ -3,8 +3,8 @@ import './App.css';
 import logo from './logo.svg';
 import Search from './Search';
 import AlbumArt from './AlbumArt';
-import TrackList from './TrackList';
-import {_getToken, searchAlbum, getTracks} from './Spotify';
+import {TrackList, Popularities} from './TrackList';
+import {_getToken, searchAlbum, getTracks, getPopularity} from './Spotify';
 
 export default class App extends React.Component{
     constructor(props) {
@@ -15,7 +15,8 @@ export default class App extends React.Component{
             trackNames: [
                 "Placeholder Track 1",
                 "Placeholder Track 2"
-            ]
+            ],
+            popularities: [10, 15]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -34,8 +35,15 @@ export default class App extends React.Component{
                     id: data.albums.items[0].id,
                 })
                 getTracks(token, this.state.id).then( data => {
-                    const tracks = data.items.map( (item) => item.name);
-                    this.setState({trackNames: tracks})
+                    const trackNames = data.items.map( (item) => item.name);
+                    const trackIDs = data.items.map( (item) => item.id);
+
+                    this.setState({trackNames: trackNames})
+                    getPopularity(token, trackIDs).then( popularities => {
+                        this.setState({
+                            popularities: popularities
+                        })
+                    })
                 })
             })
         })
@@ -51,10 +59,17 @@ export default class App extends React.Component{
                         handleChange={this.handleChange}
                     />
                 </div>
-                <div className="album-art">
-                    <AlbumArt image={this.state.image} />
+                <AlbumArt image={this.state.image} />
+                <div
+                    className="track-list-frame"
+                >
+                    <TrackList
+                        trackNames={this.state.trackNames}
+                    />
+                    <Popularities
+                        popularities={this.state.popularities}
+                    />
                 </div>
-                <TrackList trackNames={this.state.trackNames} />
             </div>
         )
     }

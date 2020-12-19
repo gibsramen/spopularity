@@ -42,3 +42,17 @@ export const getTracks = async (token, albumID) => {
     const data = await result.json();
     return data;
 }
+
+export const getPopularity = async (token, trackIDs) => {
+    const searchUrl = "https://api.spotify.com/v1/tracks/?ids=";
+    const params = {
+        method: "GET",
+        headers: {"Authorization": "Bearer " + token}
+    };
+    const trackListString = trackIDs.join();
+    const query = searchUrl + trackListString;
+    const result = await fetch(query, params);
+    const data = await result.json();
+    const popularities = data.tracks.map( (item) => item.popularity);
+    return popularities;
+}

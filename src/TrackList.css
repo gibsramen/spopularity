@@ -1,8 +1,18 @@
-.track-list {
+.track-list2 {
+    list-style-position: outside;
+    text-align: right;
+    float: right;
     margin: auto;
-};
+    padding: 0;
+    width: 20em;
+    border: 1px solid black;
+}
 
-p {
-    margin: 100px;
-    margin-bottom: 10px;
-};
+.track-popularities {
+    margin: auto;
+    padding: 0;
+    margin-right: 20em;
+    list-style-type: none;
+    text-align: left;
+    border: 1px solid black;
+}
