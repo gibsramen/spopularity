@@ -44,13 +44,19 @@ export default class App extends React.Component{
     render() {
         return (
             <div className="App">
-                <Search
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                />
-                <AlbumArt
-                    image={this.state.image}
-                />
+                <div className="search-bar">
+                    <Search
+                        handleSubmit={this.handleSubmit}
+                        handleChange={this.handleChange}
+                    />
+                </div>
+                <div className="album-frame">
+                    <div className="album-art">
+                        <AlbumArt
+                            image={this.state.image}
+                        />
+                    </div>
+                </div>
             </div>
         )
     }
