@@ -12,6 +12,7 @@ const App = () => {
     const [trackNames, setTrackNames] = useState(["Track 1", "Track 2"]);
     const [trackPopularities, setTrackPopularities] = useState([10, 15]);
     const [searchValue, setSearchValue] = useState("");
+    const [albumSelection, setAlbumSelection] = useState("")
     const [searchOptions, setSearchOptions] = useState(
         [
             {images: [""], href: ""}
@@ -23,10 +24,14 @@ const App = () => {
         setSearchValue(searchEvent.target.value);
     }
 
+    const imgClick = (selection) => {
+        setAlbumSelection(selection.target.src);
+    }
+
     const handleSubmit = (submitEvent) => {
         _getToken().then( token => { // with the access token...
             searchAlbum(token, searchValue).then( searchData => { // search
-                const topTenAlbums = searchData.albums.items.slice(10);
+                const topTenAlbums = searchData.albums.items.slice(0, 10);
                 const firstAlbum = searchData.albums.items[0];
                 setSearchOptions(topTenAlbums);
 
@@ -53,8 +58,7 @@ const App = () => {
                 handleChange={handleChange}
             />
             {!optionsHidden === true &&
-            <SearchOptions albums={searchOptions}/>
-            }
+            <SearchOptions albums={searchOptions} onClick={imgClick} /> }
             <AlbumArt image={albumImage} />
             <div className="track-list-frame">
                 <TrackList trackNames={trackNames} />
