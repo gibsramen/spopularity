@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.search-bar label > input {
+    height: 50px;
+    width: 400px;
+    font-size: 130%;
+}
+
+.search-bar form > input {
+    height: 55px;
+    width: 80px;
+    font-size: 130%;
+}
+
+.track-list-frame {
+    display: flex;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: right;
+}
