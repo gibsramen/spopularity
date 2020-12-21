@@ -17,26 +17,17 @@ export const SearchBar = (props) => {
 }
 
 export const SearchOptions = (props) => {
-    const displayOptions = props.albums.map( (album) =>
-        <SearchOption
-            img={album.images[0].url}
+    const displayOptions = props.albums.map( (album, index) =>
+        <img
+            src={album.images[0].url}
             onClick={props.onClick}
-            albumName={album.name}
+            id={index}
+            alt={album.name}
+            width="100px"
+            key={index}
         />
     )
     return (
         <div id="search-options">{displayOptions}</div>
-    )
-}
-
-const SearchOption = (props) => {
-    return (
-        <img
-            className="search-option"
-            src={props.img}
-            alt="Search option"
-            width="100px"
-            onClick={props.onClick}
-        />
     )
 }

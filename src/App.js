@@ -12,40 +12,35 @@ const App = () => {
     const [trackNames, setTrackNames] = useState(["Track 1", "Track 2"]);
     const [trackPopularities, setTrackPopularities] = useState([10, 15]);
     const [searchValue, setSearchValue] = useState("");
-    const [albumSelection, setAlbumSelection] = useState("")
-    const [searchOptions, setSearchOptions] = useState(
-        [
-            {images: [""], href: ""}
-        ]
-    );
+    const [searchOptions, setSearchOptions] = useState("");
     const [optionsHidden, setOptionsHidden] = useState(true);
+    const [token, setToken] = useState("");
 
     const handleChange = (searchEvent) => {
         setSearchValue(searchEvent.target.value);
     }
 
     const imgClick = (selection) => {
-        setAlbumSelection(selection.target.src);
+        const currAlbum = searchOptions[selection.target.id];
+        getTracks(token, currAlbum.id).then( data => {
+            const trackNames = data.items.map( (item) => item.name);
+            const trackIDs = data.items.map( (item) => item.id);
+
+            getPopularity(token, trackIDs).then( trackPopularities => {
+                setAlbumImage(currAlbum.images[0].url);
+                setTrackNames(trackNames);
+                setTrackPopularities(trackPopularities);
+            })
+        })
     }
 
     const handleSubmit = (submitEvent) => {
         _getToken().then( token => { // with the access token...
+            setToken(token);
             searchAlbum(token, searchValue).then( searchData => { // search
                 const topTenAlbums = searchData.albums.items.slice(0, 10);
-                const firstAlbum = searchData.albums.items[0];
                 setSearchOptions(topTenAlbums);
-
-                getTracks(token, firstAlbum.id).then( data => {
-                    const trackNames = data.items.map( (item) => item.name);
-                    const trackIDs = data.items.map( (item) => item.id);
-
-                    getPopularity(token, trackIDs).then( trackPopularities => {
-                        setOptionsHidden(false);
-                        setAlbumImage(firstAlbum.images[0].url);
-                        setTrackNames(trackNames);
-                        setTrackPopularities(trackPopularities);
-                    })
-                })
+                setOptionsHidden(false);
             })
         })
         submitEvent.preventDefault();
